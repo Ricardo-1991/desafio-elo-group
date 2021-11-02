@@ -2,10 +2,26 @@ import React from 'react'
 import { Formik, Field, Form, ErrorMessage } from 'formik' // Com o Field já faz automaticamente a parte do Value nos Inputs. Subsituir.
 import './Form.css'
 import schema from '../schema'
+import { useHistory } from 'react-router-dom'
 
 const ComponentForm = () => {
+  let history = useHistory()
   function onSubmit(values, actions) {
-    console.log('SUBMIT', values)
+    // criando Objeto para enviar para o LocalStorage
+    const formObject = {
+      usuario: values.user,
+      password: values.password
+    }
+    localStorage.setItem('usuário', JSON.stringify(formObject))
+
+    actions.resetForm({
+      values: {
+        user: '',
+        password: '',
+        confirmPassword: ''
+      }
+    })
+    history.push('/panel')
   }
 
   return (
