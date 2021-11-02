@@ -1,0 +1,29 @@
+
+.user-form__group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px; 
+
+}
+
+.user-form__group label {
+  margin-bottom: 5px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #555;
+}
+
+.user-form__group input {
+  border: 1px solid #AAA;
+  background-color: #fff;
+  height: 30px;
+  padding: 0 10px;
+  width: 250px;
+}
+
+button {
+  background-color: white;
+  margin: 15px auto;
+  width: 270px;
+  padding: 15px;
+}

@@ -1,0 +1,34 @@
+.panel-header{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.panel-table__group {
+  text-align: center;
+  border-collapse: collapse;
+}
+
+.panel-table__group th {
+  padding: 30px;
+  background-color: rgb(148, 147, 147);
+  color: white;
+}
+
+.panel-table__group td {
+  width: 240px;
+  padding: 25px;
+}
+
+tr:nth-child(odd) {
+  background:lightgray;
+}
+
+button {
+  width: 265px;
+  background-color: #0d6efd;
+  border-color: #0d6efd;
+  color: white;
+}
+
