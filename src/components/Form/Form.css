@@ -1,9 +1,25 @@
+.container-form {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  border: 1px solid gray;
+  width: 600px;
+ 
+}
+
+
+.container-form img {
+  width: 300px;
+  max-width: 100%;
+  margin: 15px 0 15px;
+}
 
 .user-form__group {
   display: flex;
   flex-direction: column;
   margin-bottom: 15px; 
-
+  max-width: min-content;
+  padding: 5px;
 }
 
 .user-form__group label {

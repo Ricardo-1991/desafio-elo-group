@@ -1,8 +1,9 @@
 import React from 'react'
 import { Formik, Field, Form, ErrorMessage } from 'formik' // Com o Field já faz automaticamente a parte do Value nos Inputs. Subsituir.
 import './Form.css'
-import schema from '../schema'
+import FormSchema from '../FormSchema'
 import { useHistory } from 'react-router-dom'
+import elo from './formImg/elo.jpeg'
 
 const ComponentForm = () => {
   let history = useHistory()
@@ -25,13 +26,14 @@ const ComponentForm = () => {
   }
 
   return (
-    <div>
+    <div className="container-form">
+      <img alt="imagem" src={elo} />
       <Formik
-        validationSchema={schema}
+        validationSchema={FormSchema}
         onSubmit={onSubmit}
         initialValues={{ user: '', password: '', confirmPassword: '' }}
-        // Com o values, o Formik ja faz a parte do State
-        render={({ values, erros, touched, isValid }) => (
+      >
+        {(values, erros, touched, isValid) => (
           <Form>
             <div className="user-form__group">
               <label htmlFor="user">Usuário *</label>
@@ -52,14 +54,14 @@ const ComponentForm = () => {
               />
               <ErrorMessage name="confirmPassword" />
               <div>
-                <button type="submit" disabled={!isValid}>
+                <button type="submit" disabled={isValid}>
                   Registrar
                 </button>
               </div>
             </div>
           </Form>
         )}
-      />
+      </Formik>
     </div>
   )
 }

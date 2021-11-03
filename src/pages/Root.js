@@ -1,5 +1,5 @@
 import React from 'react'
-import { BrowserRouter as Router, Link, Switch, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import PagesComponentForm from './Form/Form'
 import PagesComponentPanel from './Panel/Panel'
 import PagesComponentCreate from './Create/Create'

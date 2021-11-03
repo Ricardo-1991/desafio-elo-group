@@ -1,9 +1,118 @@
 import React from 'react'
+import { Formik, Field, Form, ErrorMessage } from 'formik'
+import './Create.css'
+import elo from './createImgs/elo.jpeg'
+import CreateSchema from '../CreateSchema'
+import { useHistory } from 'react-router-dom'
 
 const ComponentCreate = () => {
+  let history = useHistory()
+  function onSubmit(values, actions) {
+    // criando Objeto para enviar para o LocalStorage
+    const creatObject = {
+      nome: values.nome,
+      telefone: values.telefone,
+      email: values.email,
+      id: 'Cliente em potencial'
+    }
+
+    localStorage.setItem('Novo Lead', JSON.stringify(creatObject))
+    alert('Lead incluído com sucesso!')
+
+    actions.resetForm({
+      values: {
+        nome: '',
+        telefone: '',
+        email: ''
+      }
+    })
+    history.push('/panel')
+  }
+
   return (
-    <div>
-      <h1>Create</h1>
+    <div className="container">
+      <div>
+        <Formik
+          validationSchema={CreateSchema}
+          onSubmit={onSubmit}
+          initialValues={{ nome: '', telefone: '', email: '' }}
+        >
+          {(values, erros, touched, isValid) => (
+            <Form>
+              <img className="create-img" src={elo} alt="imagem" />
+              <div className="create-container-form">
+                <label htmlFor="nome">Nome *</label>
+                <Field type="text" id="nome" name="nome" />
+                <ErrorMessage name="nome" />
+
+                <label htmlFor="telefone">Telefone *</label>
+                <Field type="number" id="telefone" name="telefone" />
+                <ErrorMessage name="telefone" />
+
+                <label htmlFor="nome">Email *</label>
+                <Field type="email" id="email" name="email" />
+                <ErrorMessage name="email" />
+              </div>
+              <div>
+                <button
+                  className="button-create"
+                  type="submit"
+                  disabled={isValid}
+                >
+                  Salvar
+                </button>
+              </div>
+            </Form>
+          )}
+        </Formik>
+      </div>
+
+      <h2>Novo Lead</h2>
+      <div id="container" className="create-table__group">
+        <table>
+          <thead>
+            <tr>
+              <th>
+                <input type="checkbox" name="all" />
+              </th>
+              <th></th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr>
+              <td>
+                <input type="checkbox" name="ckb[]" value="1" />
+              </td>
+              <td>RPA</td>
+            </tr>
+            <tr>
+              <td>
+                <input type="checkbox" name="ckb[]" value="2" />
+              </td>
+              <td>Produto Digital</td>
+            </tr>
+            <tr>
+              <td>
+                <input type="checkbox" name="ckb[]" value="3" />
+              </td>
+              <td>Analytics</td>
+            </tr>
+
+            <tr>
+              <td>
+                <input type="checkbox" name="ckb[]" value="4" />
+              </td>
+              <td>BPM</td>
+            </tr>
+
+            <tr>
+              <td></td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   )
 }
