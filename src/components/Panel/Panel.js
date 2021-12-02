@@ -1,12 +1,14 @@
 import React from 'react'
 import './Panel.css'
-import { useHistory } from 'react-router-dom'
+import { useNavigate, useLocation } from 'react-router-dom'
 import elo from './panelImgs/elo.jpeg'
 
 const ComponentPanel = () => {
-  let history = useHistory()
+  let navigate = useNavigate()
+  let { state } = useLocation()
+
   const CreateLeads = () => {
-    history.push('/create')
+    navigate('/create')
   }
 
   const dragStart = e => {
@@ -61,7 +63,9 @@ const ComponentPanel = () => {
                 draggable
                 onDragStart={dragStart}
                 onDragOver={dragOvering}
-              ></td>
+              >
+                {state && state.nome}
+              </td>
               <td id="row2_id" onDrop={drop} onDragOver={dragOver}></td>
               <td></td>
             </tr>

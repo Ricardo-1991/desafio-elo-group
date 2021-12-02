@@ -1,12 +1,12 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Formik, Field, Form, ErrorMessage } from 'formik'
 import './Create.css'
 import elo from './createImgs/elo.jpeg'
 import CreateSchema from '../CreateSchema'
-import { useHistory } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 const ComponentCreate = () => {
-  let history = useHistory()
+  let navigate = useNavigate()
   function onSubmit(values, actions) {
     // criando Objeto para enviar para o LocalStorage
     const creatObject = {
@@ -26,7 +26,13 @@ const ComponentCreate = () => {
         email: ''
       }
     })
-    history.push('/panel')
+    navigate('/panel', { state: creatObject })
+  }
+
+  const [state, setState] = useState(false)
+
+  const handleCheck = () => {
+    setState(!state)
   }
 
   return (
@@ -73,7 +79,12 @@ const ComponentCreate = () => {
           <thead>
             <tr>
               <th>
-                <input type="checkbox" name="all" />
+                <input
+                  type="checkbox"
+                  name="all"
+                  checked={state}
+                  onChange={handleCheck}
+                />
               </th>
               <th></th>
             </tr>
@@ -82,26 +93,46 @@ const ComponentCreate = () => {
           <tbody>
             <tr>
               <td>
-                <input type="checkbox" name="ckb[]" value="1" />
+                <input
+                  type="checkbox"
+                  name="rpa"
+                  checked={state ? true : false}
+                  onChange={ev => ev.target.checked}
+                />
               </td>
               <td>RPA</td>
             </tr>
             <tr>
               <td>
-                <input type="checkbox" name="ckb[]" value="2" />
+                <input
+                  type="checkbox"
+                  name="digitalProduct"
+                  checked={state ? true : false}
+                  onChange={ev => ev.target.checked}
+                />
               </td>
               <td>Produto Digital</td>
             </tr>
             <tr>
               <td>
-                <input type="checkbox" name="ckb[]" value="3" />
+                <input
+                  type="checkbox"
+                  name="analitycs"
+                  checked={state ? true : false}
+                  onChange={ev => ev.target.checked}
+                />
               </td>
               <td>Analytics</td>
             </tr>
 
             <tr>
               <td>
-                <input type="checkbox" name="ckb[]" value="4" />
+                <input
+                  type="checkbox"
+                  name="bpm"
+                  checked={state ? true : false}
+                  onChange={ev => ev.target.checked}
+                />
               </td>
               <td>BPM</td>
             </tr>

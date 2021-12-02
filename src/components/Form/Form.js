@@ -2,17 +2,18 @@ import React from 'react'
 import { Formik, Field, Form, ErrorMessage } from 'formik' // Com o Field já faz automaticamente a parte do Value nos Inputs. Subsituir.
 import './Form.css'
 import FormSchema from '../FormSchema'
-import { useHistory } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import elo from './formImg/elo.jpeg'
 
 const ComponentForm = () => {
-  let history = useHistory()
+  const navigate = useNavigate()
   function onSubmit(values, actions) {
     // criando Objeto para enviar para o LocalStorage
     const formObject = {
       usuario: values.user,
       password: values.password
     }
+
     localStorage.setItem('usuário', JSON.stringify(formObject))
 
     actions.resetForm({
@@ -22,7 +23,7 @@ const ComponentForm = () => {
         confirmPassword: ''
       }
     })
-    history.push('/panel')
+    navigate('/panel')
   }
 
   return (
